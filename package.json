@@ -1,0 +1,23 @@
+{
+  "name": "tugas1-restful-2428240094",
+  "version": "1.0.0",
+  "description": "Tugas 1 - RESTful API Murni dengan Express.js (Topik 26: Smartphone, SI5B)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "express",
+    "restful-api",
+    "tugas1"
+  ],
+  "author": "2428240094",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

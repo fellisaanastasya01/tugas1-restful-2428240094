@@ -1,0 +1,79 @@
+// ============================================================
+//  TUGAS 1 - RESTful API Murni dengan Express.js
+//  Topik 26 : Toko Gadget - Smartphone
+//  Resource  : /smartphones
+//  Filter    : ?merek=
+//  NIM       : 2428240094
+//  Kelas     : SI5B
+// ============================================================
+
+// --- 1. impor express dan siapkan aplikasi ---
+const express = require("express");
+const app = express();
+
+// middleware untuk membaca body JSON (Content-Type: application/json)
+app.use(express.json());
+
+// --- 2. data awal (array di memori) + penomoran id otomatis ---
+// minimal 3 data awal, id dibuat server (tidak dikirim di body)
+const smartphones = [
+  {
+    id: 1,
+    merek: "Xiaomi",
+    model: "Redmi Note 14",
+    ramGb: 8,
+    penyimpananGb: 256,
+    harga: 3299000,
+  },
+  {
+    id: 2,
+    merek: "Samsung",
+    model: "Galaxy A15",
+    ramGb: 6,
+    penyimpananGb: 128,
+    harga: 2799000,
+  },
+  {
+    id: 3,
+    merek: "Xiaomi",
+    model: "Poco X6 Pro",
+    ramGb: 8,
+    penyimpananGb: 256,
+    harga: 4199000,
+  },
+  {
+    id: 4,
+    merek: "Oppo",
+    model: "A78",
+    ramGb: 8,
+    penyimpananGb: 256,
+    harga: 3699000,
+  },
+];
+
+// id untuk data berikutnya (otomatis bertambah 1)
+let nextId = 5;
+
+// daftar field wajib pada topik 26
+const FIELD_WAJIB = ["merek", "model", "ramGb", "penyimpananGb", "harga"];
+
+// --- 3. route utama: GET / (JSON info API, bukan teks/HTML) ---
+app.get("/", (req, res) => {
+  res.json({
+    nama: "NAMA LENGKAP KAMU",
+    nim: "2428240094",
+    kelas: "SI5B",
+    nomorTopik: 26,
+    topik: "Toko Gadget: Smartphone",
+    resource: "smartphones",
+    deskripsi: "RESTful API untuk mengelola data smartphone (Topik 26 - SI5B)",
+    endpoint: [
+      "GET    /smartphones              -> ambil semua data",
+      "GET    /smartphones/:id          -> ambil satu data",
+      "POST   /smartphones              -> tambah data baru",
+      "PUT    /smartphones/:id          -> ubah seluruh data",
+      "DELETE /smartphones/:id          -> hapus data",
+      "GET    /smartphones?merek=Xiaomi -> filter data",
+    ],
+  });
+});
