@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/smartphones"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "merek": "",
+      "model": "Y21",
+      "ramGb": 6,
+      "penyimpananGb": 128,
+      "harga": 1999000
+    }
+order: 7000

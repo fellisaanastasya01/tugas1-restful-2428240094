@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/smartphones/99"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "merek": "A",
+      "model": "B",
+      "ramGb": 1,
+      "penyimpananGb": 1,
+      "harga": 1
+    }
+order: 9000

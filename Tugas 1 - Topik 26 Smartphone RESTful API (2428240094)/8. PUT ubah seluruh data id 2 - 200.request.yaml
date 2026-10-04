@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/smartphones/2"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "merek": "Samsung",
+      "model": "Galaxy A55",
+      "ramGb": 8,
+      "penyimpananGb": 256,
+      "harga": 5999000
+    }
+order: 8000

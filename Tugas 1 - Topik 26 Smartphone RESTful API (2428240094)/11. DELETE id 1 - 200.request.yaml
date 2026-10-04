@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{baseUrl}}/smartphones/1"
+method: DELETE
+headers:
+  Accept: application/json
+order: 11000

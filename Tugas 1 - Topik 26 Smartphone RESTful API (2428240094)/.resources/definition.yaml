@@ -1,0 +1,24 @@
+$kind: collection
+description: |-
+  RESTful API Murni dengan Express.js
+
+  Topik 26 - Toko Gadget: Smartphone
+  Resource : /smartphones
+  Filter   : ?merek=
+
+  Fellisa Anastasya
+  NIM : 2428240094
+  Kelas : SI5B
+
+  Jalankan server lokal terlebih dahulu:
+    cd tugas1-restful-2428240094
+    npm install
+    npm run dev
+
+  Base URL lokal : http://localhost:3000
+  Base URL Vercel: https://tugas1-restful-2428240094.vercel.app
+
+  Ganti {{baseUrl}} menjadi URL Vercel bila ingin menguji hasil deploy.
+  Koleksi ini juga menjadi nilai tambah: export file .json ini ke LMS.
+variables:
+  baseUrl: http://localhost:3000
