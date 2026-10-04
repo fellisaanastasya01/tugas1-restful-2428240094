@@ -238,3 +238,32 @@ app.delete("/smartphones/:id", (req, res) => {
     data: null,
   });
 });
+
+// --- 9. middleware catch-all: endpoint tidak terdaftar -> 404 JSON ---
+app.use((req, res) => {
+  res.status(404).json({
+    status: "error",
+    message: "Endpoint tidak ditemukan",
+    data: null,
+  });
+});
+
+// --- 10. error handler: pastikan response tetap JSON (tidak HTML) ---
+app.use((err, req, res, next) => {
+  res.status(400).json({
+    status: "error",
+    message: "Request tidak valid: body harus berupa JSON",
+    data: null,
+  });
+});
+
+// --- 11. jalankan server (hanya lokal) + export untuk Vercel ---
+const PORT = process.env.PORT || 3000;
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server berjalan di [http://localhost:${PORT}]`);
+  });
+}
+
+module.exports = app;
