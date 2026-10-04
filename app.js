@@ -60,7 +60,7 @@ const FIELD_WAJIB = ["merek", "model", "ramGb", "penyimpananGb", "harga"];
 // --- 3. route utama: GET / (JSON info API, bukan teks/HTML) ---
 app.get("/", (req, res) => {
   res.json({
-    nama: "NAMA LENGKAP KAMU",
+    nama: "Fellisa Anastasya",
     nim: "2428240094",
     kelas: "SI5B",
     nomorTopik: 26,

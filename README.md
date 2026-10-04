@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| Nama | NAMA LENGKAP KAMU |
+| Nama | Fellisa Anastasya |
 | NIM | 2428240094 |
 | Kelas | SI5B |
 | Nomor Topik | 26 |
