@@ -1,8 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/smartphones?merek=Xiaomi"
-method: GET
-headers:
-  Accept: application/json
-queryParams:
-  merek: Xiaomi
-order: 4000

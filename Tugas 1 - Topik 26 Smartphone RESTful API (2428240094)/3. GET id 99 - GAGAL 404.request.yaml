@@ -1,6 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/smartphones/99"
-method: GET
-headers:
-  Accept: application/json
-order: 3000

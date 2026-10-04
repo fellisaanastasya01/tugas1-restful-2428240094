@@ -1,8 +1,0 @@
-$kind: http-request
-url: "{{baseUrl}}/smartphones?merek=Nokia"
-method: GET
-headers:
-  Accept: application/json
-queryParams:
-  merek: Nokia
-order: 5000

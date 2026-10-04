@@ -1,7 +1,0 @@
-$kind: http-request
-name: 14. GET / (info API)
-url: "{{baseUrl}}/"
-method: GET
-headers:
-  Accept: application/json
-order: 14000
