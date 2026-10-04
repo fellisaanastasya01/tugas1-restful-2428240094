@@ -1,13 +1,17 @@
+// Impor Express
 const express = require('express');
 const app = express();
 
+// Middleware untuk membaca JSON dari body request
 app.use(express.json());
 
+// Middleware Logger (Untuk melihat proses di terminal)
 app.use((req, res, next) => {
     console.log(`[LOG] Method: ${req.method} | Endpoint: ${req.originalUrl}`);
     next();
 });
 
+// Array data awal di memori (Minimal 3 data)
 let smartphones = [
     { 
         id: 1, 
@@ -22,6 +26,7 @@ let smartphones = [
 ];
 let nextId = 4;
 
+// GET / -> Mengembalikan JSON info API
 app.get('/', (req, res) => {
     res.status(200).json({
         nama: "Fellisa Anastasya",
@@ -38,6 +43,7 @@ app.get('/', (req, res) => {
     });
 });
 
+// GET /smartphones & Filter (GET /smartphones?merek=nilai)
 app.get('/smartphones', (req, res) => {
     // Jika ada query string 'merek'
     if (req.query.merek) {
@@ -46,9 +52,11 @@ app.get('/smartphones', (req, res) => {
         );
         return res.status(200).json(filteredData);
     }
+    // Jika tidak ada filter, tampilkan semua
     res.status(200).json(smartphones);
 });
 
+// GET /smartphones/:id (Ambil satu data)
 app.get('/smartphones/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const data = smartphones.find((s) => s.id === id);
@@ -60,12 +68,15 @@ app.get('/smartphones/:id', (req, res) => {
             data: null
         });
     }
+    // Output balasan GET langsung berupa data, tanpa dibungkus status/message
     res.status(200).json(data); 
 });
 
+// POST /smartphones (Tambah data baru)
 app.post('/smartphones', (req, res) => {
     const { merek, model, ramGb, penyimpananGb, harga } = req.body;
 
+    // Validasi field wajib
     if (!merek || !model || !ramGb || !penyimpananGb || !harga) {
         return res.status(400).json({
             status: "error",
@@ -84,10 +95,12 @@ app.post('/smartphones', (req, res) => {
     });
 });
 
+// PUT /smartphones/:id (Ubah seluruh data)
 app.put('/smartphones/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const { merek, model, ramGb, penyimpananGb, harga } = req.body;
 
+    // Validasi field wajib
     if (!merek || !model || !ramGb || !penyimpananGb || !harga) {
         return res.status(400).json({
             status: "error",
@@ -105,6 +118,7 @@ app.put('/smartphones/:id', (req, res) => {
         });
     }
 
+    // Mengganti penuh data pada index tersebut
     smartphones[index] = { id, merek, model, ramGb, penyimpananGb, harga };
 
     res.status(200).json({
@@ -114,6 +128,7 @@ app.put('/smartphones/:id', (req, res) => {
     });
 });
 
+// DELETE /smartphones/:id (Hapus data)
 app.delete('/smartphones/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = smartphones.findIndex((s) => s.id === id);
@@ -135,6 +150,7 @@ app.delete('/smartphones/:id', (req, res) => {
     });
 });
 
+// Middleware catch-all 404 (Untuk route tidak dikenal)
 app.use((req, res) => {
     res.status(404).json({
         status: "error",
@@ -143,6 +159,7 @@ app.use((req, res) => {
     });
 });
 
+// Menjalankan server (Hanya lokal + ekspor untuk Vercel)
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => console.log(`Server berjalan di http://localhost:${PORT}`));
