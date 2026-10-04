@@ -112,3 +112,58 @@ app.get("/smartphones/:id", (req, res) => {
   // data tunggal dikirim langsung (tanpa status/message)
   res.json(data);
 });
+
+// --- helper: ubah string angka menjadi number ---
+function keAngka(nilai) {
+  const n = Number(nilai);
+  return typeof nilai === "string" && nilai.trim() !== "" && !Number.isNaN(n) ? n : nilai;
+}
+
+// --- helper: cek apakah sebuah field wajib kosong ---
+function fieldKosong(body, daftar) {
+  return daftar.filter((f) => {
+    const nilai = body[f];
+    return (
+      nilai === undefined ||
+      nilai === null ||
+      nilai === "" ||
+      (typeof nilai === "string" && nilai.trim() === "")
+    );
+  });
+}
+
+// --- 6. POST /smartphones (endpoint 3) ---
+// Body: { "merek": "Xiaomi", "model": "Redmi Note 14", "ramGb": 8, "penyimpananGb": 256, "harga": 3299000 }
+app.post("/smartphones", (req, res) => {
+  const body = req.body || {};
+
+  // validasi semua field wajib -> 400 bila ada yang kosong
+  const kosong = fieldKosong(body, FIELD_WAJIB);
+
+  if (kosong.length > 0) {
+    return res.status(400).json({
+      status: "error",
+      message: `Field ${kosong.join(", ")} wajib diisi`,
+      data: null,
+    });
+  }
+
+  // id dibuat otomatis oleh server, bukan diambil dari body
+  const baru = {
+    id: nextId++,
+    merek: body.merek,
+    model: body.model,
+    ramGb: keAngka(body.ramGb),
+    penyimpananGb: keAngka(body.penyimpananGb),
+    harga: keAngka(body.harga),
+  };
+
+  smartphones.push(baru);
+
+  // berhasil -> 201 + data yang baru dibuat
+  res.status(201).json({
+    status: "success",
+    message: "Data berhasil ditambahkan",
+    data: baru,
+  });
+});
