@@ -77,3 +77,19 @@ app.get("/", (req, res) => {
     ],
   });
 });
+
+// --- 4. GET /smartphones (endpoint 1) dan filter (endpoint 6) ---
+// GET /smartphones              -> semua data (array)
+// GET /smartphones?merek=Xiaomi -> filter, hasil array langsung (boleh kosong [])
+app.get("/smartphones", (req, res) => {
+  const merek = req.query.merek;
+
+  // bila ada query string ?merek=... maka lakukan filter
+  if (merek !== undefined) {
+    const hasil = smartphones.filter((s) => s.merek === merek);
+    return res.json(hasil);
+  }
+
+  // tanpa query string -> kirim semua data
+  res.json(smartphones);
+});
