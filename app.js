@@ -167,3 +167,74 @@ app.post("/smartphones", (req, res) => {
     data: baru,
   });
 });
+
+// --- 7. PUT /smartphones/:id (endpoint 4) ---
+// Body: { "merek": "Xiaomi", "model": "Redmi Note 14 Pro", "ramGb": 12, "penyimpananGb": 512, "harga": 4999000 }
+// PUT = penggantian penuh, bukan menggabungkan dengan data lama
+app.put("/smartphones/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = smartphones.findIndex((s) => s.id === id);
+
+  // id tidak ditemukan -> 404
+  if (index === -1) {
+    return res.status(404).json({
+      status: "error",
+      message: `Data dengan id ${id} tidak ditemukan`,
+      data: null,
+    });
+  }
+
+  const body = req.body || {};
+
+  // validasi field wajib pada body -> 400 bila ada yang kosong
+  const kosong = fieldKosong(body, FIELD_WAJIB);
+
+  if (kosong.length > 0) {
+    return res.status(400).json({
+      status: "error",
+      message: `Field ${kosong.join(", ")} wajib diisi`,
+      data: null,
+    });
+  }
+
+  // ganti seluruh isi data, id tetap sama
+  smartphones[index] = {
+    id: id,
+    merek: body.merek,
+    model: body.model,
+    ramGb: keAngka(body.ramGb),
+    penyimpananGb: keAngka(body.penyimpananGb),
+    harga: keAngka(body.harga),
+  };
+
+  res.json({
+    status: "success",
+    message: `Data dengan id ${id} berhasil diperbarui`,
+    data: smartphones[index],
+  });
+});
+
+// --- 8. DELETE /smartphones/:id (endpoint 5) ---
+// Contoh: DELETE /smartphones/1
+app.delete("/smartphones/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = smartphones.findIndex((s) => s.id === id);
+
+  // id tidak ditemukan -> 404
+  if (index === -1) {
+    return res.status(404).json({
+      status: "error",
+      message: `Data dengan id ${id} tidak ditemukan`,
+      data: null,
+    });
+  }
+
+  smartphones.splice(index, 1);
+
+  // berhasil -> 200, data null, pesan menyebut id yang dihapus
+  res.json({
+    status: "success",
+    message: `Data smartphone dengan id ${id} berhasil dihapus`,
+    data: null,
+  });
+});
