@@ -93,3 +93,22 @@ app.get("/smartphones", (req, res) => {
   // tanpa query string -> kirim semua data
   res.json(smartphones);
 });
+
+// --- 5. GET /smartphones/:id (endpoint 2) ---
+// Contoh: GET /smartphones/1
+app.get("/smartphones/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const data = smartphones.find((s) => s.id === id);
+
+  // id tidak ditemukan -> 404
+  if (!data) {
+    return res.status(404).json({
+      status: "error",
+      message: `Data dengan id ${id} tidak ditemukan`,
+      data: null,
+    });
+  }
+
+  // data tunggal dikirim langsung (tanpa status/message)
+  res.json(data);
+});
