@@ -22,9 +22,10 @@ let smartphones = [
         harga: 3299000 
     },
     { id: 2, merek: "Samsung", model: "Galaxy A54", ramGb: 8, penyimpananGb: 256, harga: 5999000 },
-    { id: 3, merek: "Apple", model: "iPhone 13", ramGb: 4, penyimpananGb: 128, harga: 9999000 }
+    { id: 3, merek: "Apple", model: "iPhone 13", ramGb: 4, penyimpananGb: 128, harga: 9999000 },
+    { id: 4, merek: "Infinix", model: "Note 40 Pro", ramGb: 8, penyimpananGb: 130, harga: 3999000 }
 ];
-let nextId = 4;
+let nextId = 5;
 
 // GET / -> Mengembalikan JSON info API
 app.get('/', (req, res) => {
