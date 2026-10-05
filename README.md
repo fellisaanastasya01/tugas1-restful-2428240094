@@ -2,8 +2,6 @@
 
 **Topik 26 — Toko Gadget: Smartphone**
 
-| | |
-|---|---|
 | Nama | Fellisa Anastasya |
 | NIM | 2428240094 |
 | Kelas | SI5B |
@@ -11,8 +9,6 @@
 | Resource | `/smartphones` |
 | Filter | `?merek=` |
 | Link Deploy Vercel | https://tugas1-restful-2428240094.vercel.app |
-
----
 
 ## Menjalankan Secara Lokal
 
@@ -24,8 +20,6 @@ npm start         # jalankan dengan node biasa
 ```
 
 Server berjalan di [http://localhost:3000](http://localhost:3000).
-
----
 
 ## Daftar Endpoint
 
@@ -52,7 +46,6 @@ Server berjalan di [http://localhost:3000](http://localhost:3000).
 
 `id` dibuat otomatis oleh server dan tidak dikirim di body request.
 
----
 
 ## Contoh Request
 
@@ -116,8 +109,6 @@ Content-Type: application/json
   "data": null
 }
 ```
-
----
 
 ## Catatan
 
