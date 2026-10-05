@@ -8,7 +8,7 @@
 | Nomor Topik | 26 |
 | Resource | `/smartphones` |
 | Filter | `?merek=` |
-| Link Deploy Vercel | https://tugas1-restful-2428240094.vercel.app |
+| Link Deploy Vercel |  https://tugas1-restful-2428240094-whld.vercel.app/ |
 
 ## Menjalankan Secara Lokal
 
